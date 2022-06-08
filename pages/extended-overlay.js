@@ -9,7 +9,7 @@ export default function Home() {
   const [imageNum, setImageNum] = useState(0);
   useEffect(() => {
     const getInitData = async () => {
-      const initData = await supabase.from("image-num").select("*").eq("id", 1);
+      const initData = await supabase.from("image-num").select("*").eq("id", 2);
       console.log(initData);
       setImageNum(initData.data[0].image_num);
     };
@@ -18,10 +18,10 @@ export default function Home() {
 
     const imageNumData = supabase.from("image-num").on("UPDATE", (payload) => {
       console.log(payload.new);
-      if (payload.new.id === 1) {
+      if (payload.new.id === 2) {
         setImageNum(payload.new.image_num);
       }
-      if (payload.new.id === 3) {
+      if (payload.new.id === 4) {
         if (payload.new.image_num === 69) {
           router.reload(window.location.pathname);
         }
@@ -43,9 +43,9 @@ export default function Home() {
 
       <main>
         <Image
-          src={`/StJudesProgress_${imageNum}.jpg`}
-          width="990"
-          height="1080"
+          src={`/StJudesProgress_Extended_${imageNum}.jpg`}
+          width="981"
+          height="519"
         />
       </main>
     </div>
